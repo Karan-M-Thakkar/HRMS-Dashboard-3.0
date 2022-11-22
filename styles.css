@@ -1,0 +1,336 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap");
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 13px;
+}
+
+body {
+  min-height: 100vh;
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.dropdown-toggle::after {
+  content: none;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.navbar {
+  background-color: #3653a4;
+  height: 72px;
+}
+
+.nav-link {
+  color: #fefefe;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.nav-link:hover {
+  background-color: #fefefe;
+  color: #3653a4 !important;
+  border-radius: 4px;
+  font-weight: 700;
+}
+
+.nav-link:focus {
+  background-color: #fefefe;
+  color: #3653a4 !important;
+  border-radius: 4px;
+  font-weight: 700;
+}
+
+.nav-link::before {
+  display: block;
+  content: attr(title);
+  font-weight: 700;
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
+}
+
+.navbar-logo {
+  width: 96px;
+}
+
+.navbar-text {
+  color: #fefefe;
+}
+
+.navbar-actions-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.banner-wrapper {
+  padding-top: 88px; /* for overlapping of navbar and banner */
+  flex-grow: 1;
+  background-color: #f9fbfe;
+}
+
+.banner-upper-row {
+  min-height: 400px;
+}
+
+.banner-lower-row {
+  min-height: 400px;
+}
+
+.banner-card {
+  min-height: 400px;
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15) !important;
+  border-radius: 8px;
+  background-color: #fff;
+  position: relative;
+  padding: 16px 12px;
+}
+
+.banner-card-header {
+  background-color: #3653a4;
+  width: 60%;
+  color: #fff;
+  text-align: center;
+  padding: 6px;
+  font-size: 14px;
+  border-radius: 4px;
+  position: absolute;
+  top: 0%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.banner-card-header-white {
+  color: #fff;
+  background-color: #67a242;
+}
+
+.banner-card-header-white > h5 {
+  margin-bottom: 0;
+}
+
+.banner-card-header-white > h5 > span {
+  font-weight: 700;
+}
+
+.banner-card-wo-fixed-height{
+  min-height: auto;
+}
+
+.carousel-container {
+  height: 400px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.carousel {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.carousel,
+.carousel-inner,
+.carousel-item {
+  height: 100%;
+}
+
+.carousel-item > img {
+  height: 100%;
+  object-fit: fill;
+}
+
+.tabs-btn-group {
+  margin-top: 16px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.know-your-napier-tab-text {
+  margin-top: 12px;
+}
+
+.comin-soon-text {
+  position: absolute;  
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+footer {
+  background-color: #eeeeee;
+  color: #878681;
+  text-align: center;
+}
+
+footer > p {
+  padding: 8px 0;
+  margin: 0;
+}
+
+.konw-your-napier-wrapper {
+  background-color: #fefefe;
+  color: #67a242;
+  bottom: 20px;
+  left: 40px;
+  z-index: 5000;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+
+.konw-your-napier-wrapper > p {
+  margin: 0;
+  font-size: 1.4rem;
+  margin-right: 64px;
+}
+
+.konw-your-napier-wrapper > p > span {
+  font-weight: 700;
+}
+
+.chatbot-wrapper {
+  background-color: #fefefe;
+  bottom: 20px;
+  right: 40px;
+  z-index: 5000;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+
+.know-your-nap-expand-icon,
+.chatbot-expand-icon,
+.notification-icon {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.notification-icon:hover {
+  transform: scale(1.1);
+}
+
+.contact-support-icon {
+  width: 15px;
+  height: 15px;
+  margin-right: 4px;
+  filter: invert(100%);
+}
+
+#contactSupportBtn:hover > .contact-support-icon,
+.contact-support-icon:hover {
+  filter: unset !important;
+}
+
+.chatbot-icon,
+.right-arrow-icon {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.know-your-nap-expand-icon:hover,
+.chatbot-icon:hover,
+.chatbot-expand-icon:hover {
+  transform: scale(1.2);
+}
+
+.chatbot-wrapper > p {
+  font-size: 1.2rem;
+  color: #3653a4;
+  margin: 0 64px 0 8px;
+}
+
+.modal-dialog {
+  width: 60%;
+}
+
+.modal-header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-header-container > h3 {
+  color: #67a242;
+}
+
+.modal-header-container > h3 > span {
+  font-weight: 700;
+}
+
+.tab-btn {
+  background-color: transparent;
+  border: 3px solid transparent;
+  padding: 8px 16px;
+  text-align: center;
+  color: #878681;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.active-tab-btn {
+  color: #3653a4;
+  border-bottom-color: #3653a4;
+}
+
+.read-more-link {
+  text-decoration: none;
+  display: block;
+  text-align: right;
+}
+
+.chatbot-chatbox-wrapper {
+  position: fixed;
+  bottom: 80px;
+  right: 40px;
+  background-color: #fefefe;
+  height: 400px;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 3;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  border-radius: 8px;
+  padding: 8px;
+}
+
+.chatbot-down-msg-one {
+  font-size: 1.3rem;
+  color: #878681;
+}
+
+.chatbot-down-msg-two {
+  font-size: 1.2rem;
+  color: #878681;
+}
+
+.chatbox-close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  height: 10px;
+  width: 10px;
+  align-self: flex-end;
+  cursor: pointer;
+}
