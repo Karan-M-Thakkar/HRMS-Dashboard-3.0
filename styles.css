@@ -9,7 +9,25 @@
 }
 
 html {
-  font-size: 12px;
+  font-size: 8px;
+}
+
+@media (min-width: 1024px) {
+  html {
+    font-size: 9px;
+  }
+}
+
+@media (min-width: 1120px) {
+  html {
+    font-size: 13px;
+  }
+}
+
+@media (min-width: 1440px) {
+  html {
+    font-size: 14px;
+  }
 }
 
 body {
