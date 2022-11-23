@@ -18,7 +18,19 @@ html {
   }
 }
 
+@media (min-width: 1088px) {
+  html {
+    font-size: 11px;
+  }
+}
+
 @media (min-width: 1120px) {
+  html {
+    font-size: 12px;
+  }
+}
+
+@media (min-width: 1320px) {
   html {
     font-size: 13px;
   }
