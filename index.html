@@ -176,29 +176,31 @@
           <div class="banner-card-header banner-card-header-white">
             <h5>Know Your <span>NAPIER</span></h5>
           </div>
-          <div class="tabs-btn-group">
-            <button class="tab-btn" ng-class="{'active-tab-btn': currentTab == 'vision'}"
-              ng-click="changeKnowYourNapTab('vision')">
-              VISION
-            </button>
-            <button class="tab-btn" ng-class="{'active-tab-btn': currentTab == 'mission'}"
-              ng-click="changeKnowYourNapTab('mission')">
-              MISSION
-            </button>
-            <button class="tab-btn" ng-class="{'active-tab-btn': currentTab == 'focus'}"
-              ng-click="changeKnowYourNapTab('focus')">
-              FOCUS
-            </button>
-            <button class="tab-btn" ng-class="{'active-tab-btn': currentTab == 'team'}"
-              ng-click="changeKnowYourNapTab('team')">
-              TEAM
-            </button>
+          <div class="know-my-napier-content-container p-3">
+            <div class="tabs-btn-group">
+              <button class="tab-btn" ng-class="{'active-tab-btn': currentTab == 'vision'}"
+                ng-click="changeKnowYourNapTab('vision')">
+                VISION
+              </button>
+              <button class="tab-btn" ng-class="{'active-tab-btn': currentTab == 'mission'}"
+                ng-click="changeKnowYourNapTab('mission')">
+                MISSION
+              </button>
+              <button class="tab-btn" ng-class="{'active-tab-btn': currentTab == 'focus'}"
+                ng-click="changeKnowYourNapTab('focus')">
+                FOCUS
+              </button>
+              <button class="tab-btn" ng-class="{'active-tab-btn': currentTab == 'team'}"
+                ng-click="changeKnowYourNapTab('team')">
+                TEAM
+              </button>
+            </div>
+            <div class="know-your-napier-tab-text">
+              <p>{{modalTabText}}</p>
+            </div>
+            <a class="read-more-link" href="#">Read More
+              <img class="right-arrow-icon" src="./resources/images/right-arrow.gif" alt="" srcset="" /></a>
           </div>
-          <div class="know-your-napier-tab-text">
-            <p>{{modalTabText}}</p>
-          </div>
-          <a class="read-more-link" href="#">Read More
-            <img class="right-arrow-icon" src="./resources/images/right-arrow.gif" alt="" srcset="" /></a>
         </div>
       </div>
       <div class="col-4 p-4">
