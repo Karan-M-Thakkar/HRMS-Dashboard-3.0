@@ -212,4 +212,9 @@ dashboardApp.controller("dashboardCtrl", function ($scope, $log) {
 
   $scope.isChatBoxOpened = false;
   $scope.changeKnowYourNapTab("vision");
+
+  $scope.redirectToNewsOrEvent = function(redirectionLink) {
+    window.open(redirectionLink);
+  }
+
 });
