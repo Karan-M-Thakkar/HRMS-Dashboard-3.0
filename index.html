@@ -60,9 +60,9 @@
     </div>
   </nav>
   <section class="banner-wrapper container-fluid">
-    <div class="row mb-4">
+    <div class="row mb-4 banner-upper-row">
       <div class="col-8 p-4 carousel-container">
-        <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-bs-ride="carousel"
+        <div id="carouselExampleIndicators" class="carousel slide carousel-fade carousel-dark" data-bs-ride="carousel"
           data-bs-pause="false">
           <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
@@ -130,7 +130,7 @@
             <div class="mt-4 p-3">
               <div class="event-and-news-card-container" ng-repeat="object in eventAndNewsData">
                 <div class="row event-and-news-card align-items-start">
-                  <div class="col-2 date-container" ng-if="object.type === 'event'">
+                  <div class="col-2 date-container {{object.backgroundColorClass}}" ng-if="object.type === 'event'">
                     <p>{{getFormattedDate(object.date)}}</p>
                     <hr />
                     <p>{{getFormattedMonth(object.date)}}</p>
@@ -156,14 +156,14 @@
           <div class="banner-card-header">Gallery</div>
           <div class="gallery-wrapper p-3">
             <div class="gallery-card row mt-4" ng-repeat="gallery in galleryData">
-              <div class="col-6" ng-if="$index % 2 != 0">
+              <div class="col-5 bubble bubble-right" ng-if="$index % 2 != 0">
                 <h5>{{gallery.galleryName}}</h5>
                 <a class="explore-this-link" href="{{gallery.redirectionLink}}" target="_blank">Explore this</a>
               </div>
-              <div class="gallery-card-thumbnail-container col-6">
+              <div class="gallery-card-thumbnail-container col-7">
                 <img src="{{gallery.thumbnailUrl}}" alt="{{gallery.galleryName}}">
               </div>
-              <div class="col-6" ng-if="$index % 2 == 0">
+              <div class="col-5 bubble bubble-left" ng-if="$index % 2 == 0">
                 <h5>{{gallery.galleryName}}</h5>
                 <a class="explore-this-link" href="{{gallery.redirectionLink}}" target="_blank">Explore this</a>
               </div>

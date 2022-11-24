@@ -81,6 +81,7 @@ dashboardApp.controller("dashboardCtrl", function ($scope, $log) {
       redirectionLink:
         "https://teams.microsoft.com/l/meetup-join/19%3ameeting_ODVhMzAyNjQtN2I5Mi00YjQwLWE0NTEtYzc5MjY4N2NhY2U4%40thread.v2/0?context=%7b%22Tid%22%3a%22fbefa5de-8192-4522-b70b-e765e95acc5d%22%2c%22Oid%22%3a%224d09e04e-598f-47b8-b0f7-c9bf99d856b2%22%7d",
       status: "active",
+      backgroundColorClass: "bg-primary"
     },
     {
       type: "news",
@@ -104,6 +105,7 @@ dashboardApp.controller("dashboardCtrl", function ($scope, $log) {
       redirectionLink:
         "https://teams.microsoft.com/l/meetup-join/19%3ameeting_ZThlY2QwM2EtMmUxNy00MWRmLWEwNzQtZjgxYjc4ZGY1ODg0%40thread.v2/0?context=%7b%22Tid%22%3a%22fbefa5de-8192-4522-b70b-e765e95acc5d%22%2c%22Oid%22%3a%22ee572cd9-8ca4-4143-8c11-b136db485816%22%7d",
       status: "active",
+      backgroundColorClass: "bg-success"
     },
     {
       type: "event",
@@ -117,6 +119,7 @@ dashboardApp.controller("dashboardCtrl", function ($scope, $log) {
       redirectionLink:
         "https://res.cloudinary.com/karanthakkar/image/upload/v1669181076/pexels-leeloo-thefirst-7163955_ydrra8.jpg",
       status: "active",
+      backgroundColorClass: "bg-danger"
     },
     {
       type: "news",
@@ -134,38 +137,46 @@ dashboardApp.controller("dashboardCtrl", function ($scope, $log) {
   ];
 
   $scope.galleryData = [
-        {
-            "galleryName": "Lunch with CEO @ Singapore",
-            "thumbnailUrl": "https://www.yammer.com/api/v1/uploaded_files/1525452627968/preview/?client_application_id=40443904&fallback_to_icon=false&file_type=image&network_id=243901&storage=AZURE&uid=1020258631680",
-            "redirectionLink": "https://web.yammer.com/main/org/napierhealthcare.com/threads/eyJfdHlwZSI6IlRocmVhZCIsImlkIjoiMjAxNDA5ODQzOTM0MDAzMiJ9",
-            "status": "active"
-        },
-        {
-            "galleryName": "Training fuels performance!",
-            "thumbnailUrl": "https://www.yammer.com/api/v1/uploaded_files/1513593905152/preview/?client_application_id=40443904&fallback_to_icon=false&file_type=image&network_id=243901&storage=AZURE&uid=1020258631680",
-            "redirectionLink": "https://web.yammer.com/main/org/napierhealthcare.com/threads/eyJfdHlwZSI6IlRocmVhZCIsImlkIjoiMTk5NjgzMjI5MDc5OTYxNiJ9",
-            "status": "active"
-        },
-        {
-            "galleryName": "HIS GA dev team members at office",
-            "thumbnailUrl": "https://www.yammer.com/api/v1/uploaded_files/1517140647936/preview/?client_application_id=40443904&fallback_to_icon=false&file_type=image&network_id=243901&storage=AZURE&uid=1020258631680",
-            "redirectionLink": "https://web.yammer.com/main/org/napierhealthcare.com/threads/eyJfdHlwZSI6IlRocmVhZCIsImlkIjoiMjAwMDcyODQ4ODY1Njg5NiJ9",
-            "status": "active"
-        },
-        {
-          "galleryName": "Virtual Diwali Celebration glimpses",
-          "thumbnailUrl": "https://www.yammer.com/api/v1/uploaded_files/1498378919936/version/1519748628480/large_preview/?client_application_id=40443904&fallback_to_icon=false&file_type=image&network_id=243901&storage=AZURE&uid=1020258631680",
-          "redirectionLink": "https://web.yammer.com/main/org/napierhealthcare.com/threads/eyJfdHlwZSI6IlRocmVhZCIsImlkIjoiMTk3NjY2MjM1MjU0Mzc0NCJ9",
-          "status": "active"
-      }
-    ]
+    {
+      galleryName: "Lunch with CEO @ Singapore",
+      thumbnailUrl:
+        "https://res.cloudinary.com/karanthakkar/image/upload/v1669270422/WhatsApp_Image_2022-11-21_at_11.26.31_AM_hfsdip.jpg",
+      redirectionLink:
+        "https://web.yammer.com/main/org/napierhealthcare.com/threads/eyJfdHlwZSI6IlRocmVhZCIsImlkIjoiMjAxNDA5ODQzOTM0MDAzMiJ9",
+      status: "active",
+    },
+    {
+      galleryName: "Training fuels performance!",
+      thumbnailUrl:
+        "https://res.cloudinary.com/karanthakkar/image/upload/v1669270384/32cee1f7-5586-4b2a-8d9d-46cb35d77728_l8axik.jpg",
+      redirectionLink:
+        "https://web.yammer.com/main/org/napierhealthcare.com/threads/eyJfdHlwZSI6IlRocmVhZCIsImlkIjoiMTk5NjgzMjI5MDc5OTYxNiJ9",
+      status: "active",
+    },
+    {
+      galleryName: "HIS GA dev team members at office",
+      thumbnailUrl:
+        "https://res.cloudinary.com/karanthakkar/image/upload/v1669270385/HIS_GA_Team_iwyvib.jpg",
+      redirectionLink:
+        "https://web.yammer.com/main/org/napierhealthcare.com/threads/eyJfdHlwZSI6IlRocmVhZCIsImlkIjoiMjAwMDcyODQ4ODY1Njg5NiJ9",
+      status: "active",
+    },
+    {
+      galleryName: "Virtual Diwali Celebration glimpses",
+      thumbnailUrl:
+        "https://res.cloudinary.com/karanthakkar/image/upload/v1669270385/Slide2_evrp3b.jpg",
+      redirectionLink:
+        "https://web.yammer.com/main/org/napierhealthcare.com/threads/eyJfdHlwZSI6IlRocmVhZCIsImlkIjoiMTk3NjY2MjM1MjU0Mzc0NCJ9",
+      status: "active",
+    },
+  ];
 
-  $scope.getFormattedMonth = function(dateString) {
-    const formatter = new Intl.DateTimeFormat('en', { month: 'short' })
+  $scope.getFormattedMonth = function (dateString) {
+    const formatter = new Intl.DateTimeFormat("en", { month: "short" });
     return formatter.format(new Date(dateString));
-  }
+  };
 
-  $scope.getFormattedDate = function(dateString) {
+  $scope.getFormattedDate = function (dateString) {
     return new Date(dateString).getDate();
   };
 
@@ -213,8 +224,7 @@ dashboardApp.controller("dashboardCtrl", function ($scope, $log) {
   $scope.isChatBoxOpened = false;
   $scope.changeKnowYourNapTab("vision");
 
-  $scope.redirectToNewsOrEvent = function(redirectionLink) {
+  $scope.redirectToNewsOrEvent = function (redirectionLink) {
     window.open(redirectionLink);
-  }
-
+  };
 });

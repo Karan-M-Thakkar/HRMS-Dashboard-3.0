@@ -113,7 +113,7 @@ body {
 }
 
 .banner-upper-row {
-  max-height: 560px;
+  max-height: 520px;
 }
 
 .banner-lower-row {
@@ -159,7 +159,7 @@ body {
 }
 
 .carousel-container {
-  min-height: 100%;
+  height: 520px;
   border-radius: 4px;
   overflow: hidden;
 }
@@ -232,7 +232,6 @@ body {
 }
 
 .date-container {
-  background-color: #67a242;
   padding: 4px;
   display: flex;
   flex-direction: column;
@@ -268,13 +267,51 @@ body {
 
 .explore-this-link {
   text-decoration: none;
-  color: #3653a4;
+  color: #f9fbfe;
 }
 
 .gallery-card-thumbnail-container > img {
   width: 100%;
   border-radius: 8px;
 }
+
+.bubble {
+  position: relative;
+  background-color: #32557f;
+  border-radius: 8px;
+  padding: 8px;
+  color: #fff;
+}
+
+.bubble-left::before{
+  content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 0;
+    height: 0;
+    border: 13px solid transparent;
+    border-right-color: #32557f;
+    border-left: 0;
+    margin-top: -13px;
+    margin-left: -13px;
+}
+
+.bubble-right::after{
+  content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    width: 0;
+    height: 0;
+    border: 13px solid transparent;
+    border-left-color: #32557f;
+    border-right: 0;
+    margin-top: -13px;
+    margin-right: -13px;
+}
+
+
 
 .banner-action-btn {
   color: #fff;
