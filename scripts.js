@@ -2,6 +2,11 @@ const dashboardApp = angular.module("dashboardApp", []);
 dashboardApp.controller("dashboardCtrl", function ($scope, $log) {
   $log.info("Controller loaded successfully!");
 
+  var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+  var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+    return new bootstrap.Tooltip(tooltipTriggerEl)
+  })
+
   $scope.categories = [
     {
       category: "HRMS",
@@ -14,10 +19,11 @@ dashboardApp.controller("dashboardCtrl", function ($scope, $log) {
         "New Hire Survey",
         "HRF",
         "Employee Exit Interview",
+        "HRIS",
       ],
     },
     {
-      category: "Prod & Proj Planning",
+      category: "Product & Project",
       modules: ["QGate Management", "PRC", "PR & PO"],
     },
     {
@@ -31,20 +37,6 @@ dashboardApp.controller("dashboardCtrl", function ($scope, $log) {
         "Performance Review System(PRS)",
         "Productivity Tracking",
       ],
-    },
-    {
-      category: "General",
-      modules: [
-        "Direct Reportee Details",
-        "HRIS",
-        "Policy Documents",
-        "Calendar Automation",
-        "Organization Tree",
-      ],
-    },
-    {
-      category: "Master Config",
-      modules: ["Masters", "Security Masters"],
     },
     {
       category: "Leave & Attendance",
@@ -66,8 +58,8 @@ dashboardApp.controller("dashboardCtrl", function ($scope, $log) {
       ],
     },
     {
-      category: "Feedback",
-      modules: ["VOC"],
+      category: "Master",
+      modules: ["Masters", "Security Masters"],
     },
   ];
 
