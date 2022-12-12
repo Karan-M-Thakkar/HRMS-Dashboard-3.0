@@ -48,10 +48,11 @@ body {
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  position: relative;
 }
 
 .branding-ribbon-container {
-  background-image: url("./resources/images/Final_Journey\ Wall\ header\ cropped.jpg");
+  background-image: url("../images/Final_Journey\ Wall\ header\ cropped.jpg");
   height: 80px;
   position: relative;
   background-size: contain;
@@ -632,4 +633,50 @@ footer > p {
   width: 10px;
   align-self: flex-end;
   cursor: pointer;
+}
+
+.loader-background {
+  position: fixed;
+  min-height: 100vh;
+  width: 100vw;
+  z-index: 10000000;
+  background-color: #00000096;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  position: relative;
+  animation: rotate 1s linear infinite
+}
+.loader::before , .loader::after {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  inset: 0px;
+  border-radius: 50%;
+  border: 5px solid #FFF;
+  animation: prixClipFix 2s linear infinite ;
+}
+.loader::after{
+  border-color: #67a242;
+  animation: prixClipFix 2s linear infinite , rotate 0.5s linear infinite reverse;
+  inset: 6px;
+}
+
+@keyframes rotate {
+  0%   {transform: rotate(0deg)}
+  100%   {transform: rotate(360deg)}
+}
+
+@keyframes prixClipFix {
+    0%   {clip-path:polygon(50% 50%,0 0,0 0,0 0,0 0,0 0)}
+    25%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 0,100% 0,100% 0)}
+    50%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,100% 100%,100% 100%)}
+    75%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 100%)}
+    100% {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 0)}
 }

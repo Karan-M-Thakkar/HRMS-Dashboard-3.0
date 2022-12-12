@@ -12,13 +12,16 @@
     integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
     crossorigin="anonymous"></script>
   <!-- Custom CSS -->
-  <link rel="stylesheet" href="./styles.css" />
+  <link rel="stylesheet" href="./resources/css/styles.css" />
   <!-- angularJS v1.8.2 -->
   <script src="./resources/js/angular.min.js"></script>
   <title>HRMS 3.0</title>
 </head>
 
 <body ng-controller="dashboardCtrl">
+  <div class="loader-background" ng-if="showApiCallLoader">
+    <span class="loader"></span>
+  </div>
   <div class="branding-ribbon-container">
     <div class="branding-ribbon-logo-container">
       <img src="./resources/images/Napier Catalyst_Web_white.png" alt="">
@@ -26,9 +29,9 @@
   </div>
   <nav class="navbar navbar-expand sticky-top">
     <div class="container-fluid">
-      <!-- <a class="navbar-brand me-4" href="#">
+      <a class="navbar-brand me-4" href="#">
         <img class="navbar-logo" src="./resources/images/napier-healthcare-logo.png" alt="logo" />
-      </a> -->
+      </a>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item dropdown me-4" ng-repeat="category in categories">
@@ -48,6 +51,9 @@
             <span class="navbar-text"> Thakkar Karankumar Mahendrabhai </span>
           </div>
           <div class="navbar-actions-btn-container">
+            <button class="btn btn-outline-light navbar-actions-btn" type="button" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Administration" ng-click="openDashboardAdmin()">
+              <img src="./resources/images/settings.png" alt="">
+            </button>
             <button class="btn btn-outline-light navbar-actions-btn" type="button" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Notifications">
               <img src="./resources/images/notification.png" alt="">
             </button>
@@ -237,7 +243,7 @@
     <p class="chatbot-down-msg-two">Try again in some time, please!</p>
   </div>
 
-  <script src="./scripts.js"></script>
+  <script src="./resources/js/scripts.js"></script>
 </body>
 
 </html>

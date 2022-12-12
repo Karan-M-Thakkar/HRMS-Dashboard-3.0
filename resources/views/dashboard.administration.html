@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="dashboardAdminApp">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HRMS</title>
+  <!-- jQuery v3.6.1 -->
+  <script src="../js/jquery-3.6.1.min.js"></script>
+
+  <!-- Bootstrap CDN Downlaod v3.3.7 -->
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"
+    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    crossorigin="anonymous"></script>
+
+  <!-- angularJS v1.8.2 -->
+  <script src="../js/angular.min.js"></script>
+  <script src="../js/angular-animate.min.js"></script>
+  <script src="../js/angular-sanitize.min.js"></script>
+
+  <script src="../js/ui-bootstrap-tpls-2.5.0.min.js"></script>
+
+  <!-- custom CSS -->
+  <link rel="stylesheet" href="../css/dashboard.admin.styles.css" />
+</head>
+
+<body ng-controller="DashboardAdminController">
+  <div class="branding-ribbon-container">
+    <a href="#" class="branding-ribbon-logo-container">
+      <img src="../images/Napier Catalyst_Web_white.png" alt="" ng-click="redirectToDashboard()"/>
+    </a>
+  </div>
+  <div class="container">
+    <div class="row content-wrapper">
+      <div class="col-xs-2">
+        <ul class="admin-tabs-list">
+          <li class="admin-tabs-list-item" ng-class="{'active-admin-tabs-list-item': activeFormType === 'news'}"
+            ng-click="toggleForm('news')">
+            News
+          </li>
+          <li class="admin-tabs-list-item" ng-class="{'active-admin-tabs-list-item': activeFormType === 'event'}"
+            ng-click="toggleForm('event')">
+            Event
+          </li>
+          <li class="admin-tabs-list-item" ng-class="{'active-admin-tabs-list-item': activeFormType === 'gallery'}"
+            ng-click="toggleForm('gallery')">
+            Galley
+          </li>
+          <li class="admin-tabs-list-item" ng-class="{'active-admin-tabs-list-item': activeFormType === 'linkedIn'}"
+            ng-click="toggleForm('linkedIn')">
+            LinkedIn
+          </li>
+          <li class="admin-tabs-list-item" ng-class="{'active-admin-tabs-list-item': activeFormType === 'carousel'}"
+            ng-click="toggleForm('carousel')">
+            Carousel
+          </li>
+          <li class="admin-tabs-list-item" ng-class="{'active-admin-tabs-list-item': activeFormType === 'cultureTabs'}"
+            ng-click="toggleForm('cultureTabs')">
+            Culture Tabs
+          </li>
+        </ul>
+      </div>
+      <div class="col-xs-10 right-content-wrapper">
+        <div class="admin-search-container">
+          <h4 class="container-header">Search</h4>
+          <div class="row">
+            <div class="col-xs-3">
+              <p class="input-group">
+                <input type="text" placeholder="From" class="form-control date-input" uib-datepicker-popup="dd-MM-yyyy"
+                  ng-model="fromDate" is-open="fromDatePopup.opened" datepicker-options="fromDateOptions"
+                  show-button-bar="false" ng-blur="restrictToDate()" ng-readonly="true" />
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default" ng-click="openFromDatepicker()">
+                    <i class="glyphicon glyphicon-calendar"></i>
+                  </button>
+                </span>
+              </p>
+            </div>
+            <div class="col-xs-3">
+              <p class="input-group">
+                <input type="text" placeholder="To" class="form-control date-input" uib-datepicker-popup="dd-MM-yyyy"
+                  ng-model="toDate" is-open="toDatePopup.opened" datepicker-options="toDateOptions"
+                  show-button-bar="false" ng-readonly="true" />
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default" ng-click="openToDatepicker()">
+                    <i class="glyphicon glyphicon-calendar"></i>
+                  </button>
+                </span>
+              </p>
+            </div>
+            <div class="col-xs-4 button-group">
+              <button class="btn btn-primary">Search</button>
+              <button class="btn btn-secondary">Clear</button>
+            </div>
+          </div>
+        </div>
+        <form class="admin-form-container">
+          <h4 class="container-header">{{formMode | capitalize}}</h4>
+          <div class="row">
+            <div class="form-group col-xs-12" ng-if="!(activeFormType === 'linkedIn' || activeFormType === 'carousel')">
+              <label for="newsTitle">Title</label>
+              <input type="text" class="form-control" id="newsTitle">
+            </div>
+            <div class="form-group col-xs-12" ng-if="!(activeFormType === 'linkedIn' || activeFormType === 'carousel' || activeFormType === 'gallery')">
+              <label for="newsDescription">Description</label>
+              <textarea type="text" class="form-control" id="newsTitle" rows="3"></textarea>
+            </div>
+            <div class="form-group col-xs-12" ng-if="!(activeFormType === 'event' || activeFormType === 'linkedIn' || activeFormType === 'cultureTabs')">
+              <label for="newsTitle">Thumbnail URL</label>
+              <input type="text" class="form-control" id="newsTitle">
+            </div>
+            <div class="form-group col-xs-12">
+              <label for="newsTitle">Redirection URL</label>
+              <input type="text" class="form-control" id="newsTitle">
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-xs-3" ng-if="!(activeFormType === 'carousel' || activeFormType === 'linkedIn' || activeFormType === 'cultureTabs')">
+              <label for="newsTitle">Expiry Date</label>
+              <p class="input-group">
+                <input type="text" class="form-control date-input" uib-datepicker-popup="dd-MM-yyyy"
+                  ng-model="expiryDate" is-open="expiryDatePopup.opened" datepicker-options="expiryDateOptions"
+                  show-button-bar="false" ng-readonly="true" />
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default" ng-click="openExpiryDatepicker()">
+                    <i class="glyphicon glyphicon-calendar"></i>
+                  </button>
+                </span>
+              </p>
+            </div>
+            <div class="form-group col-xs-3" ng-if="!(activeFormType !== 'news')">
+              <label for="newsTitle">Event Date</label>
+              <p class="input-group">
+                <input type="text" class="form-control date-input" uib-datepicker-popup="dd-MM-yyyy"
+                  ng-model="eventDate" is-open="eventDatePopup.opened" datepicker-options="eventDateOptions"
+                  show-button-bar="false" ng-readonly="true" />
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default" ng-click="openEventDatepicker()">
+                    <i class="glyphicon glyphicon-calendar"></i>
+                  </button>
+                </span>
+              </p>
+            </div>
+            <div class="form-group col-xs-3">
+              <label for="newsTitle">Status</label>
+              <div>
+                <label class="radio-inline">
+                  <input type="radio" name="statusRadioOptions" id="status" value="active" ng-model="status"> Active
+                </label>
+                <label class="radio-inline">
+                  <input type="radio" name="statusRadioOptions" id="status" value="inactive" ng-model="status"> Inactive
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-4 button-group">
+              <button class="btn btn-success">Submit</button>
+              <button class="btn btn-secondary">Clear</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <script src="../app/dashboard.admin.controller.js"></script>
+</body>
+
+</html>

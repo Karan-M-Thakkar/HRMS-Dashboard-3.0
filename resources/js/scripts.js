@@ -1,11 +1,16 @@
 const dashboardApp = angular.module("dashboardApp", []);
-dashboardApp.controller("dashboardCtrl", function ($scope, $log) {
+dashboardApp.controller("dashboardCtrl", function ($scope, $log, $timeout) {
   $log.info("Controller loaded successfully!");
 
   var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
   var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
     return new bootstrap.Tooltip(tooltipTriggerEl)
   })
+
+  $scope.showApiCallLoader = true;
+  $timeout(function () {
+    $scope.showApiCallLoader = false;
+  }, 2000);
 
   $scope.categories = [
     {
@@ -219,4 +224,8 @@ dashboardApp.controller("dashboardCtrl", function ($scope, $log) {
   $scope.redirectToNewsOrEvent = function (redirectionLink) {
     window.open(redirectionLink);
   };
+
+  $scope.openDashboardAdmin = () => {
+    window.open('resources/views/dashboard.administration.html', '_self');
+  }
 });
