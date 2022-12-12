@@ -65,6 +65,10 @@ body {
   align-items: stretch;
 }
 
+select, option {
+  cursor: pointer;
+}
+
 .branding-ribbon-container {
   background-image: url("../images/Final_Journey\ Wall\ header\ cropped.jpg");
   height: 80px;

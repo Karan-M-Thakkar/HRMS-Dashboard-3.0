@@ -9,6 +9,7 @@ dashboardAdminApp.controller(
   function ($scope, $log, $http, $timeout) {
     $log.log("DashboardAdminController loaded successfully!");
     $scope.activeFormType = "news";
+    $scope.searchType = "news";
     $scope.formMode = 'create'
     $scope.fromDate = null;
     $scope.toDate = null;
@@ -52,10 +53,6 @@ dashboardAdminApp.controller(
     $scope.openEventDatepicker = function () {
       $scope.eventDatePopup.opened = true;
     }
-
-    $scope.toggleForm = (formType) => {
-      $scope.activeFormType = formType;
-    };
 
     $scope.restrictToDate = () => {
       $scope.toDateOptions = {
