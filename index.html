@@ -5,16 +5,15 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- Bootstrap CDN Downlaod v5.2.2 -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous" />
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
-    crossorigin="anonymous"></script>
+  <!-- Bootstrap v5.2.3 -->
+  <link rel="stylesheet" href="./resources/css/bootstrap.min.css">
+  <script src="./resources/js/bootstrap.bundle.min.js"></script>
   <!-- Custom CSS -->
   <link rel="stylesheet" href="./resources/css/styles.css" />
   <!-- angularJS v1.8.2 -->
   <script src="./resources/js/angular.min.js"></script>
+  <!-- jQuery v3.6.1 -->
+  <script src="./resources/js/jquery-3.6.1.min.js"></script>
   <title>HRMS 3.0</title>
 </head>
 
@@ -54,7 +53,7 @@
             <button class="btn btn-outline-light navbar-actions-btn" type="button" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Administration" ng-click="openDashboardAdmin()">
               <img src="./resources/images/settings.png" alt="">
             </button>
-            <button class="btn btn-outline-light navbar-actions-btn" type="button" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Notifications">
+            <button class="btn btn-outline-light navbar-actions-btn" type="button" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content = "Coming Soon!">
               <img src="./resources/images/notification.png" alt="">
             </button>
             <button class="btn btn-outline-light  navbar-actions-btn" id="contactSupportBtn" type="button" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Contact Support">
@@ -83,14 +82,17 @@
           </div>
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <img src="./resources/images/banner-carousel-slide-1.jpg" class="d-block w-100" alt="...">
+              <img src="{{carouselImagesData[0].thumbnailUrl}}" class="d-block w-100" alt="...">
             </div>
-            <div class="carousel-item">
+            <div class="carousel-item" ng-repeat="carouselObject in carouselImagesData" ng-if="$index !== 0">
+              <img src="{{carouselObject.thumbnailUrl}}" class="d-block w-100" alt="...">
+            </div>
+            <!-- <div class="carousel-item">
               <img src="./resources/images/banner-carousel-slide-2.jpg" class="d-block w-100" alt="...">
             </div>
             <div class="carousel-item">
               <img src="./resources/images/banner-carousel-slide-3.jpg" class="d-block w-100" alt="...">
-            </div>
+            </div> -->
           </div>
           <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
             data-bs-slide="prev">
@@ -104,37 +106,55 @@
           </button>
         </div>
       </div>
-      <div class="col-2 p-4">
+      <div class="col-2 p-3">
         <div class="row banner-action-btns-container">
-          <div class="col-6 p-3 banner-action-btn-card"><button class="btn bg-primary w-100 h-100 banner-action-btn">
+          <div class="col-6 p-2 banner-action-btn-card"><button class="btn bg-primary w-100 h-100 banner-action-btn">
             <div class="p-2">
               <img src="./resources/images/connection.png" class="action-btn-image" alt="">
             </div>
             <p>Org Chart</p>
           </button></div>
-          <div class="col-6 p-3 banner-action-btn-card"><button class="btn bg-success w-100 h-100 banner-action-btn">
+          <div class="col-6 p-2 banner-action-btn-card"><button class="btn bg-success w-100 h-100 banner-action-btn">
             <div class="p-2">
               <img src="./resources/images/calendar.png" class="action-btn-image" alt="">
             </div>
             <p>CA Tools</p>
           </button></div>
-          <div class="col-6 p-3 banner-action-btn-card"><button class="btn bg-danger w-100 h-100 banner-action-btn">
+          <div class="col-6 p-2 banner-action-btn-card"><button class="btn bg-danger w-100 h-100 banner-action-btn">
             <div class="p-2">
               <img src="./resources/images/policy.png" class="action-btn-image" alt="">
             </div>
             <p>Policy</p>
           </button></div>
-          <div class="col-6 p-3 banner-action-btn-card"><button class="btn bg-info w-100 h-100 banner-action-btn">
+          <div class="col-6 p-2 banner-action-btn-card"><button class="btn bg-info w-100 h-100 banner-action-btn">
             <div class="p-2">
               <img src="./resources/images/voice-search.png" class="action-btn-image" alt="">
             </div>
             <p>VOC</p>
           </button></div>
-          <div class="col-6 p-3 banner-action-btn-card"><button class="btn bg-warning w-100 h-100 banner-action-btn">
+          <div class="col-6 p-2 banner-action-btn-card"><button class="btn bg-warning w-100 h-100 banner-action-btn">
             <div class="p-2">
               <img src="./resources/images/diagram.png" class="action-btn-image" alt="">
             </div>
             <p>Reportees</p>
+          </button></div>
+          <div class="col-6 p-2 banner-action-btn-card"><button class="btn bg-warning w-100 h-100 banner-action-btn banner-action-btn-productivity">
+            <div class="p-2">
+              <img src="./resources/images/fast.png" class="action-btn-image" alt="">
+            </div>
+            <p>Productivity</p>
+          </button></div>
+          <div class="col-6 p-2 banner-action-btn-card"><button class="btn bg-warning w-100 h-100 banner-action-btn banner-action-btn-prs">
+            <div class="p-2">
+              <img src="./resources/images/kpi.png" class="action-btn-image" alt="">
+            </div>
+            <p>PRS</p>
+          </button></div>
+          <div class="col-6 p-2 banner-action-btn-card"><button class="btn bg-warning w-100 h-100 banner-action-btn banner-action-btn-newjoinees">
+            <div class="p-2">
+              <img src="./resources/images/reading.png" class="action-btn-image" alt="">
+            </div>
+            <p>New Joinees</p>
           </button></div>
         </div>
       </div>
@@ -175,7 +195,10 @@
                 <h5>{{gallery.galleryName}}</h5>
                 <a class="explore-this-link" href="{{gallery.redirectionLink}}" target="_blank">Explore this</a>
               </div>
-              <div class="gallery-card-thumbnail-container col-7">
+              <div class="gallery-card-thumbnail-container gallery-card-thumbnail-container-right col-7" ng-if="$index % 2 != 0">
+                <img src="{{gallery.thumbnailUrl}}" alt="{{gallery.galleryName}}">
+              </div>
+              <div class="gallery-card-thumbnail-container gallery-card-thumbnail-container-left col-7" ng-if="$index % 2 == 0">
                 <img src="{{gallery.thumbnailUrl}}" alt="{{gallery.galleryName}}">
               </div>
               <div class="col-5 bubble bubble-left" ng-if="$index % 2 == 0">
@@ -221,8 +244,10 @@
       <div class="col-4 p-4">
         <div class="banner-card banner-card-wo-fixed-height">
           <div class="banner-card-header banner-card-header-green"><h5>What's hapening</h5></div>
-          <iframe id="linkedInIframe" src="https://www.linkedin.com/embed/feed/update/urn:li:share:6999586488954875904" height="643"
-            width="100%" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
+          <div class="iframes-wrapper">
+            <div class="iframe-repeater-wrapper" ng-repeat="object in linkedInData" ng-bind-html="trustAsHtml(object.thumbnailUrl)">
+            </div>
+          </div>
         </div>
       </div>
     </div>

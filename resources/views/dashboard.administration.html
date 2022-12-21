@@ -26,6 +26,10 @@
 
   <script src="../js/ui-bootstrap-tpls-2.5.0.min.js"></script>
 
+  <!-- ui-grid v4.11.1 -->
+  <script src="../js/ui-grid.min.js"></script>
+  <link rel="stylesheet" href="../css/ui-grid.min.css">
+
   <!-- custom CSS -->
   <link rel="stylesheet" href="../css/dashboard.admin.styles.css" />
 </head>
@@ -33,7 +37,7 @@
 <body ng-controller="DashboardAdminController">
   <div class="branding-ribbon-container">
     <a href="#" class="branding-ribbon-logo-container">
-      <img src="../images/Napier Catalyst_Web_white.png" alt="" ng-click="redirectToDashboard()"/>
+      <img src="../images/Napier Catalyst_Web_white.png" alt="" ng-click="redirectToDashboard()" />
     </a>
   </div>
   <div class="container">
@@ -109,13 +113,19 @@
               <button class="btn btn-secondary">Clear</button>
             </div>
           </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <div id="searchGrid" ui-grid="searchGridOptions" class="grid"></div>
+            </div>
+          </div>
         </div>
-        <form class="admin-form-container">
+        <form class="admin-form-container" name="createNewDataForm">
           <h4 class="container-header">{{formMode | capitalize}}</h4>
           <div class="row">
             <div class="form-group col-xs-2">
               <label for="newsTitle">Type</label>
-              <select class="form-control" ng-model="activeFormType">
+              <select name="type" class="form-control" ng-model="formData.activeFormType"
+                ng-class="{'not-valid': !createNewDataForm.type.$valid && submitAttempted}" required>
                 <option value="news">News</option>
                 <option value="event">Event</option>
                 <option value="gallery">Gallery</option>
@@ -124,30 +134,42 @@
                 <option value="cultureTab">Culture Tab</option>
               </select>
             </div>
-            <div class="form-group col-xs-10" ng-if="!(activeFormType === 'linkedIn' || activeFormType === 'carousel')">
-              <label for="newsTitle">Title</label>
-              <input type="text" class="form-control" id="newsTitle">
+            <div class="form-group col-xs-10"
+              ng-if="!(formData.activeFormType === 'linkedIn' || formData.activeFormType === 'carousel')">
+              <label for="title">Title</label>
+              <input type="text" name="title" class="form-control" id="title" ng-model="formData.title"
+                ng-class="{'not-valid': !createNewDataForm.title.$valid && submitAttempted}" required />
             </div>
-            <div class="form-group col-xs-12" ng-if="!(activeFormType === 'linkedIn' || activeFormType === 'carousel' || activeFormType === 'gallery')">
-              <label for="newsDescription">Description</label>
-              <textarea type="text" class="form-control" id="newsTitle" rows="3"></textarea>
+            <div class="form-group col-xs-12"
+              ng-if="!(formData.activeFormType === 'linkedIn' || formData.activeFormType === 'carousel' || formData.activeFormType === 'gallery')">
+              <label for="description">Description</label>
+              <textarea type="text" name="description" class="form-control" id="description" rows="3"
+                ng-model="formData.description"
+                ng-class="{'not-valid': !createNewDataForm.description.$valid && submitAttempted}" required></textarea>
             </div>
-            <div class="form-group col-xs-12" ng-if="!(activeFormType === 'event' || activeFormType === 'linkedIn' || activeFormType === 'cultureTabs')">
-              <label for="newsTitle">Thumbnail URL</label>
-              <input type="text" class="form-control" id="newsTitle">
+            <div class="form-group col-xs-12"
+              ng-if="!(formData.activeFormType === 'event' || formData.activeFormType === 'linkedIn' || formData.activeFormType === 'cultureTabs')">
+              <label for="thumbnailURL">Thumbnail URL</label>
+              <input type="text" name="thumbnailURL" class="form-control" id="thumbnailURL"
+                ng-model="formData.thumbnailURL"
+                ng-class="{'not-valid': !createNewDataForm.thumbnailURL.$valid && submitAttempted}" required />
             </div>
             <div class="form-group col-xs-12">
-              <label for="newsTitle">Redirection URL</label>
-              <input type="text" class="form-control" id="newsTitle">
+              <label for="redirectionURL">Redirection URL</label>
+              <input type="text" name="redirectionURL" class="form-control" id="redirectionURL"
+                ng-model="formData.redirectionURL"
+                ng-class="{'not-valid': !createNewDataForm.redirectionURL.$valid && submitAttempted}" required />
             </div>
           </div>
           <div class="row">
-            <div class="form-group col-xs-3" ng-if="!(activeFormType === 'carousel' || activeFormType === 'linkedIn' || activeFormType === 'cultureTabs')">
-              <label for="newsTitle">Expiry Date</label>
+            <div class="form-group col-xs-3"
+              ng-if="!(formData.activeFormType === 'carousel' || formData.activeFormType === 'linkedIn' || formData.activeFormType === 'cultureTabs')">
+              <label for="expiryDate">Expiry Date</label>
               <p class="input-group">
-                <input type="text" class="form-control date-input" uib-datepicker-popup="dd-MM-yyyy"
-                  ng-model="expiryDate" is-open="expiryDatePopup.opened" datepicker-options="expiryDateOptions"
-                  show-button-bar="false" ng-readonly="true" />
+                <input id="expiryDate" type="text" name="expiryDate" class="form-control date-input"
+                  uib-datepicker-popup="dd-MM-yyyy" ng-model="formData.expiryDate" is-open="expiryDatePopup.opened"
+                  datepicker-options="expiryDateOptions" show-button-bar="false" ng-readonly="true"
+                  ng-class="{'not-valid': !createNewDataForm.expiryDate.$valid && submitAttempted}" required />
                 <span class="input-group-btn">
                   <button type="button" class="btn btn-default" ng-click="openExpiryDatepicker()">
                     <i class="glyphicon glyphicon-calendar"></i>
@@ -155,35 +177,46 @@
                 </span>
               </p>
             </div>
-            <div class="form-group col-xs-3" ng-if="!(activeFormType !== 'news')">
-              <label for="newsTitle">Event Date</label>
+            <div class="form-group col-xs-3" ng-if="!(formData.activeFormType !== 'news')">
+              <label for="eventDate">Event Date</label>
               <p class="input-group">
-                <input type="text" class="form-control date-input" uib-datepicker-popup="dd-MM-yyyy"
-                  ng-model="eventDate" is-open="eventDatePopup.opened" datepicker-options="eventDateOptions"
-                  show-button-bar="false" ng-readonly="true" />
+                <input id="eventDate" type="text" name="eventDate" class="form-control date-input"
+                  uib-datepicker-popup="dd-MM-yyyy" ng-model="formData.eventDate" is-open="eventDatePopup.opened"
+                  datepicker-options="eventDateOptions" show-button-bar="false" ng-readonly="true" required
+                  ng-class="{'not-valid': !createNewDataForm.eventDate.$valid && submitAttempted}" required />
                 <span class="input-group-btn">
-                  <button type="button" class="btn btn-default" ng-click="openEventDatepicker()">
+                  <button type="button" class="btn btn-default"
+                    ng-class="{'not-valid': !createNewDataForm.eventDate.$valid && submitAttempted}"
+                    ng-click="openEventDatepicker()">
                     <i class="glyphicon glyphicon-calendar"></i>
                   </button>
                 </span>
               </p>
             </div>
             <div class="form-group col-xs-3">
-              <label for="newsTitle">Status</label>
+              <label for="status">Status</label>
               <div>
                 <label class="radio-inline">
-                  <input type="radio" name="statusRadioOptions" id="status" value="active" ng-model="status"> Active
+                  <input type="radio" name="statusRadioOptions" id="status" value="active" ng-model="formData.status"
+                    required />
+                  Active
                 </label>
                 <label class="radio-inline">
-                  <input type="radio" name="statusRadioOptions" id="status" value="inactive" ng-model="status"> Inactive
+                  <input type="radio" name="statusRadioOptions" id="status" value="inactive" ng-model="formData.status"
+                    required />
+                  Inactive
                 </label>
               </div>
             </div>
           </div>
           <div class="row">
             <div class="col-xs-4 button-group">
-              <button class="btn btn-success">Submit</button>
-              <button class="btn btn-secondary">Clear</button>
+              <button class="btn btn-success" ng-click="save()">
+                Submit
+              </button>
+              <button class="btn btn-secondary" type="button" ng-click="clear()">
+                Clear
+              </button>
             </div>
           </div>
         </form>

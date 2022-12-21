@@ -1,16 +1,60 @@
 const dashboardApp = angular.module("dashboardApp", []);
-dashboardApp.controller("dashboardCtrl", function ($scope, $log, $timeout) {
+dashboardApp.controller("dashboardCtrl", function ($scope, $log, $timeout, $sce) {
   $log.info("Controller loaded successfully!");
 
-  var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+  var tooltipTriggerList = [].slice.call(
+    document.querySelectorAll('[data-bs-toggle="tooltip"]')
+  );
   var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-    return new bootstrap.Tooltip(tooltipTriggerEl)
-  })
+    return new bootstrap.Tooltip(tooltipTriggerEl);
+  });
+
+  const popoverTriggerList = document.querySelectorAll(
+    '[data-bs-toggle="popover"]'
+  );
+  const popoverList = [...popoverTriggerList].map(
+    (popoverTriggerEl) => new bootstrap.Popover(popoverTriggerEl)
+  );
 
   $scope.showApiCallLoader = true;
   $timeout(function () {
     $scope.showApiCallLoader = false;
   }, 2000);
+  
+  $scope.linkedInData = [
+    {
+      dashboardDataSeqId: 9,
+      type: "linkedIn",
+      itemDate: 1669660200000,
+      expiryDate: 1672597800000,
+      thumbnailUrl:
+        '<iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7004344112762015746" height="640" width="100%" frameborder="0" allowfullscreen="true" title="Embedded post"></iframe>',
+      title: null,
+      description: null,
+      redirectionUrl: null,
+      status: "active",
+      createdOn: 1671108303143,
+      createdBy: 1,
+      editedOn: null,
+      editedBy: null,
+    },
+    {
+      dashboardDataSeqId: 9,
+      type: "linkedIn",
+      itemDate: 1669660200000,
+      expiryDate: 1672597800000,
+      thumbnailUrl:
+        '<iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7001074296357867520" height="560" width="100%" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>',
+      title: null,
+      description: null,
+      redirectionUrl: null,
+      status: "active",
+      createdOn: 1671108303143,
+      createdBy: 1,
+      editedOn: null,
+      editedBy: null,
+    },
+  ];
 
   $scope.categories = [
     {
@@ -78,7 +122,7 @@ dashboardApp.controller("dashboardCtrl", function ($scope, $log, $timeout) {
       redirectionLink:
         "https://teams.microsoft.com/l/meetup-join/19%3ameeting_ODVhMzAyNjQtN2I5Mi00YjQwLWE0NTEtYzc5MjY4N2NhY2U4%40thread.v2/0?context=%7b%22Tid%22%3a%22fbefa5de-8192-4522-b70b-e765e95acc5d%22%2c%22Oid%22%3a%224d09e04e-598f-47b8-b0f7-c9bf99d856b2%22%7d",
       status: "active",
-      backgroundColorClass: "bg-primary"
+      backgroundColorClass: "bg-primary",
     },
     {
       type: "news",
@@ -102,7 +146,7 @@ dashboardApp.controller("dashboardCtrl", function ($scope, $log, $timeout) {
       redirectionLink:
         "https://teams.microsoft.com/l/meetup-join/19%3ameeting_ZThlY2QwM2EtMmUxNy00MWRmLWEwNzQtZjgxYjc4ZGY1ODg0%40thread.v2/0?context=%7b%22Tid%22%3a%22fbefa5de-8192-4522-b70b-e765e95acc5d%22%2c%22Oid%22%3a%22ee572cd9-8ca4-4143-8c11-b136db485816%22%7d",
       status: "active",
-      backgroundColorClass: "bg-success"
+      backgroundColorClass: "bg-success",
     },
     {
       type: "event",
@@ -116,7 +160,7 @@ dashboardApp.controller("dashboardCtrl", function ($scope, $log, $timeout) {
       redirectionLink:
         "https://res.cloudinary.com/karanthakkar/image/upload/v1669181076/pexels-leeloo-thefirst-7163955_ydrra8.jpg",
       status: "active",
-      backgroundColorClass: "bg-danger"
+      backgroundColorClass: "bg-danger",
     },
     {
       type: "news",
@@ -177,6 +221,57 @@ dashboardApp.controller("dashboardCtrl", function ($scope, $log, $timeout) {
     return new Date(dateString).getDate();
   };
 
+  $scope.carouselImagesData = [
+    {
+      dashboardDataSeqId: 14,
+      type: "carousel",
+      itemDate: 1671083288337,
+      expiryDate: 4102425000000,
+      thumbnailUrl:
+        "https://res.cloudinary.com/karanthakkar/image/upload/v1671083089/banner-carousel-slide-1_nr467c.jpg",
+      title: "",
+      description: "",
+      redirectionUrl: "https://www.linkedin.com/company/napierhealthcare/",
+      status: "active",
+      createdOn: 1671083298110,
+      createdBy: 129198,
+      editedOn: null,
+      editedBy: null,
+    },
+    {
+      dashboardDataSeqId: 15,
+      type: "carousel",
+      itemDate: 1671083338267,
+      expiryDate: 4102425000000,
+      thumbnailUrl:
+        "https://res.cloudinary.com/karanthakkar/image/upload/v1671083089/banner-carousel-slide-2_s5h2vz.jpg",
+      title: "",
+      description: "",
+      redirectionUrl: "https://www.linkedin.com/company/napierhealthcare/",
+      status: "active",
+      createdOn: 1671083338277,
+      createdBy: 129198,
+      editedOn: null,
+      editedBy: null,
+    },
+    {
+      dashboardDataSeqId: 16,
+      type: "carousel",
+      itemDate: 1671083357913,
+      expiryDate: 4102425000000,
+      thumbnailUrl:
+        "https://res.cloudinary.com/karanthakkar/image/upload/v1671620255/1a237d08-e04c-4ef9-9bc8-9a151c4cde65_ehe4w9.jpg",
+      title: "",
+      description: "",
+      redirectionUrl: "https://www.linkedin.com/company/napierhealthcare/",
+      status: "active",
+      createdOn: 1671083357923,
+      createdBy: 129198,
+      editedOn: null,
+      editedBy: null,
+    },
+  ];
+
   const visionTabText =
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. In tellus integer feugiat scelerisque varius morbi enim. Libero enim sed faucibus turpis in. Scelerisque viverra mauris in aliquam sem fringilla ut. Ultrices eros in cursus turpis massa tincidunt. Tristique sollicitudin nibh sit amet commodo. Diam maecenas sed enim ut sem viverra aliquet eget. Maecenas pharetra convallis posuere morbi leo. Et tortor consequat id porta nibh venenatis cras sed felis. Placerat duis ultricies lacus sed.";
 
@@ -226,6 +321,24 @@ dashboardApp.controller("dashboardCtrl", function ($scope, $log, $timeout) {
   };
 
   $scope.openDashboardAdmin = () => {
-    window.open('resources/views/dashboard.administration.html', '_self');
-  }
+    window.open("resources/views/dashboard.administration.html", "_self");
+  };
+
+  /* to implement html string */
+  $scope.trustAsHtml = function(str) {
+    return $sce.trustAsHtml(str);
+  };
+
+  $("body").on("click", function (e) {
+    $("[data-bs-toggle=popover]").each(function () {
+      // hide any open popovers when the anywhere else in the body is clicked
+      if (
+        !$(this).is(e.target) &&
+        $(this).has(e.target).length === 0 &&
+        $(".popover").has(e.target).length === 0
+      ) {
+        $(this).popover("hide");
+      }
+    });
+  });
 });
