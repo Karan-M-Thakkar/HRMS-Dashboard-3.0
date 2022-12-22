@@ -115,7 +115,7 @@
           </div>
           <div class="row">
             <div class="col-xs-12">
-              <div id="searchGrid" ui-grid="searchGridOptions" class="grid"></div>
+              <div id="searchGrid" ui-grid="searchGridOptions" class="grid" ui-grid-pagination ui-grid-resize-columns ui-grid-pinning></div>
             </div>
           </div>
         </div>
@@ -125,7 +125,7 @@
             <div class="form-group col-xs-2">
               <label for="newsTitle">Type</label>
               <select name="type" class="form-control" ng-model="formData.activeFormType"
-                ng-class="{'not-valid': !createNewDataForm.type.$valid && submitAttempted}" required>
+                ng-class="{'not-valid': !createNewDataForm.type.$valid && submitAttempted}" ng-disabled="formMode === 'update'" required>
                 <option value="news">News</option>
                 <option value="event">Event</option>
                 <option value="gallery">Gallery</option>
@@ -134,14 +134,12 @@
                 <option value="cultureTab">Culture Tab</option>
               </select>
             </div>
-            <div class="form-group col-xs-10"
-              ng-if="!(formData.activeFormType === 'linkedIn' || formData.activeFormType === 'carousel')">
+            <div class="form-group col-xs-10">
               <label for="title">Title</label>
               <input type="text" name="title" class="form-control" id="title" ng-model="formData.title"
                 ng-class="{'not-valid': !createNewDataForm.title.$valid && submitAttempted}" required />
             </div>
-            <div class="form-group col-xs-12"
-              ng-if="!(formData.activeFormType === 'linkedIn' || formData.activeFormType === 'carousel' || formData.activeFormType === 'gallery')">
+            <div class="form-group col-xs-12">
               <label for="description">Description</label>
               <textarea type="text" name="description" class="form-control" id="description" rows="3"
                 ng-model="formData.description"

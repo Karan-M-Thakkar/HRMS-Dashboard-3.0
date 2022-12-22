@@ -244,7 +244,7 @@ dashboardApp.controller("dashboardCtrl", function ($scope, $log, $timeout, $sce)
       itemDate: 1671083338267,
       expiryDate: 4102425000000,
       thumbnailUrl:
-        "https://res.cloudinary.com/karanthakkar/image/upload/v1671083089/banner-carousel-slide-2_s5h2vz.jpg",
+        "https://res.cloudinary.com/karanthakkar/image/upload/v1671693431/Banner_tdiuha.jpg",
       title: "",
       description: "",
       redirectionUrl: "https://www.linkedin.com/company/napierhealthcare/",

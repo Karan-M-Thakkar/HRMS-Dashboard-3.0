@@ -222,4 +222,9 @@ select, option {
 .edit-icon-wrapper > img {
   width: 15px;
   cursor: pointer;
+  margin-right: 20%;
+}
+
+.ui-grid-pager-row-count-picker select { 
+  height: 28px;
 }

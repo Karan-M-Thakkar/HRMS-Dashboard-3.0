@@ -2,12 +2,15 @@ const dashboardAdminApp = angular.module("dashboardAdminApp", [
   "ngAnimate",
   "ngSanitize",
   "ui.bootstrap",
-  "ui.grid"
+  "ui.grid",
+  'ui.grid.resizeColumns',
+  'ui.grid.pagination',
+  'ui.grid.pinning'
 ]);
 
 dashboardAdminApp.controller(
   "DashboardAdminController",
-  function ($scope, $log, $http, $timeout) {
+  function ($scope, $log, $http, $timeout, $filter) {
     $log.log("DashboardAdminController loaded successfully!");
     $scope.formData = {};
     $scope.formData.activeFormType = "news";
@@ -32,12 +35,20 @@ dashboardAdminApp.controller(
 
     $scope.searchGridOptions = {
       enableSorting: true,
-      enableHorizontalScrollbar: false,
       enableColumnMenus: false,
+      paginationPageSizes: [10, 20, 30],
+      paginationPageSize: 10,
       columnDefs: [
         { name: 'Type',
           field: 'type',
           width: '96'
+        },
+        {
+          name:'Applicable Date',
+          field: 'itemDate',
+          width: '144',
+          type: 'date',
+          cellFilter: 'date:"dd-MMM-yyyy"',
         },
         { name: 'Title',
           field: 'title',
@@ -45,25 +56,38 @@ dashboardAdminApp.controller(
         },
         { name: 'Description',
           field: 'description',
-          width: '*',
+          width: '320',
           cellToolTip: function(row) {
             return row.entity.description
           }
+        },
+        {
+          name: 'Expiration Date',
+          field: 'expiryDate',
+          width: '144',
+          type: 'date',
+          cellFilter: 'date:"dd-MMM-yyyy"',
         },
         { name: 'Status',
           field: 'status',
           width: '96'
         },
         { name: 'Action',
-          cellTemplate: '<div class="edit-icon-wrapper"><img src="../images/pencil.png" alt="" srcset=""></div>',
+          cellTemplate: '<div class="edit-icon-wrapper"><img src="../images/pencil.png" alt="" srcset="" ng-click="grid.appScope.edit(row)"></div>',
           width: '80',
-          'enableSorting': false
+          'enableSorting': false,
+          pinnedRight: true
         }
       ],
       onRegisterApi: function( gridApi ) {
         $scope.searchGridApi = gridApi;
       }
     };
+
+    $scope.edit = row => {
+      $scope.formMode = "update";
+      $log.log(row);
+    }
 
     $scope.searchGridOptions.data = [
       {
@@ -221,7 +245,7 @@ dashboardAdminApp.controller(
           "type": "carousel",
           "itemDate": 1669660200000,
           "expiryDate": 1672597800000,
-          "thumbnailUrl": "https://res.cloudinary.com/karanthakkar/image/upload/v1671083089/banner-carousel-slide-2_s5h2vz.jpg",
+          "thumbnailUrl": "https://res.cloudinary.com/karanthakkar/image/upload/v1671693431/Banner_tdiuha.jpg",
           "title": null,
           "description": null,
           "redirectionUrl": "https://www.linkedin.com/company/napierhealthcare/",
