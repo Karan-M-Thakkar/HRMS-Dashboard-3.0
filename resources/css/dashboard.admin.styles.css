@@ -101,7 +101,7 @@ select, option {
 .admin-tabs-list-item {
   padding: 8px 12px;
   cursor: pointer;
-  color: grey;
+  color: #878681;
   cursor: pointer;
   margin-bottom: 8px;
 }
@@ -200,7 +200,7 @@ select, option {
 
 .form-group > label {
   font-weight: 500;
-  color: grey;
+  color: #878681;
 }
 
 .multiple-form-control-container {
@@ -227,4 +227,18 @@ select, option {
 
 .ui-grid-pager-row-count-picker select { 
   height: 28px;
+}
+
+.add-btn {
+  width: 60%;
+  margin-left: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.add-btn > img {
+  width: 12px;
+  margin-right: 4px;
+  filter: invert(1);
 }

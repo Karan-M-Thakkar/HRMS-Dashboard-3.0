@@ -5,12 +5,13 @@ const dashboardAdminApp = angular.module("dashboardAdminApp", [
   "ui.grid",
   'ui.grid.resizeColumns',
   'ui.grid.pagination',
-  'ui.grid.pinning'
+  'ui.grid.pinning',
+  'alertsModule'
 ]);
 
 dashboardAdminApp.controller(
   "DashboardAdminController",
-  function ($scope, $log, $http, $timeout, $filter) {
+  function ($scope, $log, $http, $timeout, $filter, alertService) {
     $log.log("DashboardAdminController loaded successfully!");
     $scope.formData = {};
     $scope.formData.activeFormType = "news";
@@ -88,6 +89,28 @@ dashboardAdminApp.controller(
       $scope.formMode = "update";
       $log.log(row);
     }
+
+    /* $scope.successAlert = function () {
+      var modalInstance = $uibModal.open({
+        templateUrl: 'alertModal.html',
+        controller: function() {
+
+        }
+        controllerAs: '$ctrl',
+        size: size,
+        resolve: {
+          items: function () {
+            return $ctrl.items;
+          }
+        }
+      });
+  
+      modalInstance.result.then(function (selectedItem) {
+        $ctrl.selected = selectedItem;
+      }, function () {
+        $log.info('Modal dismissed at: ' + new Date());
+      });
+    }; */
 
     $scope.searchGridOptions.data = [
       {
@@ -390,8 +413,9 @@ dashboardAdminApp.controller(
     };
 
     $scope.save = () => {
-      $scope.submitAttempted = true;
-      $log.log($scope.createNewDataForm.$valid);
+      // $scope.submitAttempted = true;
+      // $log.log($scope.createNewDataForm.$valid);
+      alertService.showAlert('success', 'Saved successfully', 5000);
     };
 
     $scope.clear = function () {
